@@ -594,6 +594,11 @@ end
 		end
 	end
 	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['lock_badw'] then
+			data[tostring(target)]['settings']['lock_badw'] = 'no'
+		end
+	end
+	if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_member'] then
 			data[tostring(target)]['settings']['lock_member'] = 'no'
 		end
