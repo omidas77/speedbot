@@ -1,11 +1,6 @@
 <p align="center"> ![http://nahrup.ir/view/876/adv-v4.png](http://nahrup.ir/view/876/adv-v4.png)
-<h1 align="left">`[⚓️](AdvanSource`, _bot with fast speed and high power)_</h1><p align=centert">  <p align="left">[![Join the chat at https://gitter.im/janlou/AdvanSource](https://badges.gitter.im/AdvanSource.svg)](https://gitter.im/janlou/AdvanSource?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-<h4> It is an anti spam bot (CLI) with fast speed and free for you! based on [TeleSeed](https://github.com/SEEDTEAM/TeleSeed) and powered by [ADVAN™](http://telegram.me/advantm), this source have an original *Autolaunch* and *Steady script* for your ubuntu server.
-***
-<p align="left">Creator: [[ JOIN! ]](https://telegram.me/advanbot)
-<p align="left">Channel: [[ JOIN! ]](https://telegram.me/joinchat/CbNIGj07Z0YAy3CX5MRQaQ)
-<p align="left">Support: [[ JOIN! ]](https://telegram.me/joinchat/Bqy_YT_BXhTWrPiN97yvsg)
-***
+<h1 align="left">`[+](AlphaPlus`, _bot with fast speed and high power)_</h1><p align=centert">  <p align="left">[![Join the chat at https://gitter.im/janlou/AdvanSource](https://badges.gitter.im/AdvanSource.svg)](https://gitter.im/janlou/AdvanSource?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<h4> It is an anti spam bot (CLI) with fast speed and free for you! based on [TeleSeed](https://github.com/SEEDTEAM/TeleSeed) and powered by [Alpha™](http://telegram.me/AlphaPlusTM), this source have an original *Autolaunch* and *Steady script* for your ubuntu server.
 ## You can create an account for free in:
 |Rank | Name | Adress |
 |:--------|:----------|:------------|
@@ -30,6 +25,8 @@
 - <p align="left">Lock poker
 - <p align="left">Lock audio
 - <p align="left">Lock video
+- <p align="left">Lock fosh
+- <p align="left">Lock operator
 - <p align="left">Lock gifs
 - <p align="left">Lock documents
 - <p align="left">Lock photo
@@ -45,24 +42,11 @@
 - <p align="left">Show mutes list in settings
 - <p align="left">And ...
 
-## SuperGroup's languages (you can say !lang list):
-| Commands | Usage | 
-|:--------|:----------|:------------|
-| <h4>[!#/]setlang `en` | Change launguage of supergroup to `enlish` when you are in a supergroup |
-| <h4>[!#/]setlang `fa` | تغییر زبان سوپرگروه به `فارسی با دستورات انگلیسی` زمانیکه شما در سوپرگروه میباشید |
-| <h4>[!#/]setlang `فا` | تغییر زبان سوپرگروه `فارسی با دستورات فارسی` زمانیکه شما در سوپرگروه میباشید |
-## Chat's languages:
-| Commands | Usage | 
-|:--------|:----------|:------------|
-| <h4>[!#/]setlang `en` | Change launguage of chat to `enlish` when you are in a chat |
-| <h4>[!#/]setlang `fa` | تغییر زبان چت به `فارسی با دستورات انگلیسی` زمانیکه شما در چت میباشید |
-| <h4>[!#/]setlang `فا` | تغییر زبان چت `فارسی با دستورات فارسی` زمانیکه شما در چت میباشید |
-
 | INSTALL BOT |
 |:-----------------------|
 - <p align="left">Clone Source:
 ```sh
-git clone https://github.com/janlou/AdvanSource && cd AdvanSource
+git clone https://github.com/SmartSecurityTeam/Alpha && cd Alpha
 ```
 - <p align="left">install bot:
 ```sh
