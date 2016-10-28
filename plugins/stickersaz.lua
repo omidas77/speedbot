@@ -23,7 +23,7 @@ if matches[4] then
   send_photo_from_url(receiver, url, send_title, {receiver, title})
 else
 local  file = download_to_file(url,'text.webp')
- send_document('chat#id'..msg.to.id, file, ok_cb , false)
+ send_document('channel#id'..msg.to.id, file, ok_cb , false)
 end
 end
 
@@ -47,3 +47,4 @@ return {
 }
 
 end
+
