@@ -9,7 +9,7 @@ end
 
 return { 
 patterns = { 
-   "(Èæ) (.*)$", 
+   "^(Èæ) (.*)$", 
    }, 
     run = run 
   } 
