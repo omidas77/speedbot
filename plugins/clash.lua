@@ -69,7 +69,7 @@ text = leader.."\n"..coleader.."\n\nClan Members:"
   for i = 1, #items do
   text = text..'\n'..i..'- '..items[i].name..'\nlevel: '..items[i].expLevel.."\n"
   end
-  text = text.."\n\n@GPMod"
+  text = text.."\n\n@AlphaPlusTM"
    cmd:close()
   return text
  end
