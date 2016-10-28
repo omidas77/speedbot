@@ -1,10 +1,4 @@
 --پلاگین اب وهوا
-﻿local function temps(K)
- local F = (K*1.8)-459.67
- local C = K-273.15
- return F,C
-end
-
 local function run(msg, matches)
  local res = http.request("http://api.openweathermap.org/data/2.5/weather?q="..URL.escape(matches[2]).."&appid=269ed82391822cc692c9afd59f4aabba")
  local jtab = JSON.decode(res)
