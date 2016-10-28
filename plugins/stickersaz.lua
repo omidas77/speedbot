@@ -1,50 +1,65 @@
-do
-
 local function run(msg, matches)
-  local eq = URL.escape(matches[2])
-local w = "640"
-local h = "200"
-local txtsize = "62"
-local txtclr = "ff2e4357"
-if matches[3] then 
-  txtclr = matches[3]
-end
-if matches[4] then 
-  txtsize = matches[4]
-  end
-  if matches[5] and matches[6] then 
-  w = matches[5]
-  h = matches[6]
-  end
-  local url = "https://assets.imgix.net/examples/clouds.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
-
-  local receiver = get_receiver(msg)
-  if matches[1] == "*" then 
-  send_photo_from_url(receiver, url, send_title, {receiver, title})
+        local text = URL.escape(matches[1])
+        local color = 'blue'
+        if matches[2] == 'red' then
+            color = 'red'
+        elseif matches[2] == 'black' then
+            color = 'black'
+      elseif matches[2] == 'blue' then
+          color = 'blue'
+    elseif matches[2] == 'green' then
+        color = 'green'
+    elseif matches[2] == 'yellow' then
+        color = 'yellow'
+    elseif matches[2] == 'pink' then
+        color = 'magenta'
+    elseif matches[2] == 'orange' then
+        color = 'Orange'
+    elseif matches[2] == 'brown' then
+        color = 'DarkOrange'
+        end
+        local font = 'mathrm'
+        if matches[3] == 'bold' then
+            font = 'mathbf'
+        elseif matches[3] == 'italic' then
+            font = 'mathit'
+        elseif matches[3] == 'fun' then
+            font = 'mathfrak'
+        elseif matches[1] == 'arial' then
+            font = 'mathrm'
+        end
+        local size = '700'
+        if matches[4] == 'small' then 
+            size = '300'
+        elseif matches[4] == 'larg' then
+            size = '700'
+            end
+local url = 'http://latex.codecogs.com/png.latex?'..'\\dpi{'..size..'}%20\\huge%20\\'..font..'{{\\color{'..color..'}'..text..'}}'
+local file = download_to_file(url,'file.webp')
+if msg.to.type == 'channel' then
+send_document('channel#id'..msg.to.id,file,ok_cb,false)
 else
-local  file = download_to_file(url,'text.webp')
- send_document('channel#id'..msg.to.id, file, ok_cb , false)
+send_document('chat#id'..msg.to.id,file,ok_cb,false)
 end
 end
-
 return {
-  description = "Convert Text to Image",
-  usage = {
-    "/conv (txt) : convert txt to img"
-  },
-  patterns = {
-    "^[!/]sticker(*) (.+)$",
-    "^[!/](sticker) (.+)$",
-    "^[!/]sticker(*) (.+) (.+)$",
-    "^[!/]sticker (3) (.+) (.+) (.+)$",
-        "^[!/]sticker(*)2 (.+) (.+)$",
-        "^[!/]sticker (2) (.+) (.+)$",
-    "^[!/]sticker(*)3 (.+) (.+) (.+)$", 
-    "^[!/]sticker(*)4 (.+) (.+) (.+) (.+) (.+)$",
-    "^[!/]sticker (4) (.+) (.+) (.+) (.+) (.+)$"
-  },
-  run = run
+   patterns = {
+       "^[/!#]sticker (.*) ([^%s]+) (.*) (small)$",
+       "^[/!#]sticker (.*) ([^%s]+) (.*) (larg)$",
+       "^[/!#]sticker (.*) ([^%s]+) (bold)$",
+ "^[/!#]sticker (.*) (bold)$",
+       "^[/!#]sticker (.*) ([^%s]+) (italic)$",
+       "^[/!#]sticker (.*) ([^%s]+) (fun)$",
+       "^[/!#]sticker (.*) ([^%s]+) (arial)$",
+       "^[/!#]sticker (.*) (red)$",
+       "[/!#]sticker (.*) (black)$",
+       "^[/!#]sticker (.*) (blue)$",
+       "^[/!#]sticker (.*) (green)$",
+       "^[/!#]sticker (.*) (yellow)$",
+       "^[/!#]sticker (.*) (pink)$",
+       "^[/!#]sticker (.*) (orange)$",
+       "^[/!#]sticker (.*) (brown)$",
+       "^[/!#]sticker +(.*)$",
+       },
+   run = run
 }
-
-end
-
