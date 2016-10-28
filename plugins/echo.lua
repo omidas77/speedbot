@@ -1,18 +1,16 @@
- 	local function run(msg, matches)
-	local text = matches[1]
-	local b = 1
-	while b ~= 0 do
-	text = text:trim()
-	text,b = text:gsub('^!+','')
-	end
-	return text
-	
-	return {
-	description = "Reply Your Sent Message",
-	usage = "Èæ (message) : reply message",
-	patterns = {
-	"^Èæ +(.+)$"
-	},
-	run = run,
-	moderated = true
-	}
+local function run(msg, matches) 
+local text = matches[2]
+if matches[1] == "Èæ" and is_momod(msg) then 
+return text 
+else 
+return "Don\'t use it baby ğŸ˜" 
+end 
+end 
+
+return { 
+patterns = { 
+   "(Èæ) (.*)$", 
+   }, 
+    run = run 
+  } 
+--@Rezamnk Telegram Username
