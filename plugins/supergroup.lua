@@ -416,6 +416,34 @@ local function unlock_group_sticker(msg, data, target)
   end
 end
 
+local function lock_group_badw(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'yes' then
+    return 'فحش در حال حاضر قفل می باشد'
+  else
+    data[tostring(target)]['settings']['lock_badw'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'فحش قفل شد'
+  end
+end
+
+local function unlock_group_badw(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
+  if group_badw_lock == 'no' then
+    return 'فحش در حال حاضر باز می باشد'
+  else
+    data[tostring(target)]['settings']['lock_badw'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'فحش باز شد'
+  end
+end
+
 local function lock_group_contacts(msg, data, target)
   if not is_momod(msg) then
     return
@@ -599,6 +627,11 @@ function show_supergroup_settingsall(msg, target)
 			data[tostring(target)]['settings']['lock_rtl'] = 'no'
 		end
 end
+if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['lock_badw'] then
+			data[tostring(target)]['settings']['lock_badw'] = 'no'
+		end
+end
       if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_tgservice'] then
 			data[tostring(target)]['settings']['lock_tgservice'] = 'no'
@@ -610,7 +643,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
- local text = "تنظیمات سوپرگپ برای ["..msg.to.print_name.."]:\n\n[🔐] قفل های پیشفرض :\nقفل لینک 👉 "..settings.lock_link.."\nقفل فلود 👉 "..settings.flood.."\nقفل اسپم 👉 "..settings.lock_spam.."\nقفل عربی 👉 "..settings.lock_arabic.."\nقفل اعضا 👉 "..settings.lock_member.."\nقفل آر تی ال 👉 "..settings.lock_rtl.."\nقفل Tgservice  👉 "..settings.lock_tgservice.."\nقفل استیکر 👉 "..settings.lock_sticker.."\n\n[🔏] قفل های جدید :\nقفل مدیا 👉 "..settings.lock_media.."\nقفل فوروارد 👉 "..settings.lock_fwd.."\nقفل ریپلای 👉 "..settings.lock_reply.."\nقفل ربات ها 👉 "..settings.lock_bots.."\nقفل شیر 👉 "..settings.lock_share.."\nقفل تگ 👉 "..settings.lock_tag.."\nقفل شماره 👉 "..settings.lock_number.."\nقفل پوکر 👉 "..settings.lock_poker.."\nقفل صدا 👉 "..settings.lock_audio.."\nقفل عکس 👉 "..settings.lock_photo.."\nقفل فیلم 👉 "..settings.lock_video.."\nقفل فایل 👉 "..settings.lock_documents.."\nقفل متن 👉 "..settings.lock_text.."\nقفل همه 👉 "..settings.lock_all.."\nقفل گیف 👉 "..settings.lock_gifs.."\nقفل اینلاین 👉 "..settings.lock_inline.."\n\n[🔧] دیگر تنظیمات:\n[👥] عمومی؟ 👉 "..settings.public.."\n[📛] تنظیمات سختگیرانه 👉 "..settings.strict.."\n[👀]مقدار حساسیت فلود 👉 "..NUM_MSG_MAX.."|20\n\n[👥] درباره سوپرگپ:\nاسم: "..msg.to.print_name.."\nآیدی: "..msg.to.id.."\n\n[😶] "..muted_user_list(msg.to.id)
+ local text = "تنظیمات سوپرگپ برای ["..msg.to.print_name.."]:\n\n[🔐] قفل های پیشفرض :\nقفل لینک 👉 "..settings.lock_link.."\nقفل فلود 👉 "..settings.flood.."\nقفل اسپم 👉 "..settings.lock_spam.."\nقفل عربی 👉 "..settings.lock_arabic.."\nقفل اعضا 👉 "..settings.lock_member.."\nقفل آر تی ال 👉 "..settings.lock_rtl.."\nقفل Tgservice  👉 "..settings.lock_tgservice.."\nقفل استیکر 👉 "..settings.lock_sticker.."\n\n[🔏] قفل های جدید :\nقفل مدیا 👉 "..settings.lock_media.."\nقفل فوروارد 👉 "..settings.lock_fwd.."\nقفل ریپلای 👉 "..settings.lock_reply.."\nقفل ربات ها 👉 "..settings.lock_bots.."\nقفل شیر 👉 "..settings.lock_share.."\nقفل تگ 👉 "..settings.lock_tag.."\nقفل فحش 👉 "..settings.lock_badw.."\nقفل شماره 👉 "..settings.lock_number.."\nقفل پوکر 👉 "..settings.lock_poker.."\nقفل صدا 👉 "..settings.lock_audio.."\nقفل عکس 👉 "..settings.lock_photo.."\nقفل فیلم 👉 "..settings.lock_video.."\nقفل فایل 👉 "..settings.lock_documents.."\nقفل متن 👉 "..settings.lock_text.."\nقفل همه 👉 "..settings.lock_all.."\nقفل گیف 👉 "..settings.lock_gifs.."\nقفل اینلاین 👉 "..settings.lock_inline.."\n\n[🔧] دیگر تنظیمات:\n[👥] عمومی؟ 👉 "..settings.public.."\n[📛] تنظیمات سختگیرانه 👉 "..settings.strict.."\n[👀]مقدار حساسیت فلود 👉 "..NUM_MSG_MAX.."|20\n\n[👥] درباره سوپرگپ:\nاسم: "..msg.to.print_name.."\nآیدی: "..msg.to.id.."\n\n[😶] "..muted_user_list(msg.to.id)
  return text
 end
 
@@ -1672,6 +1705,9 @@ local function run(msg, matches)
 			if matches[2] == 'مخاطب' then
 				return lock_group_contacts(msg, data, target)
 			end
+			if matches[2] == 'فحش' then
+				return lock_group_badw(msg, data, target)
+			end
 			if matches[2] == 'سخت گیرانه' then
 				return enable_strict_rules(msg, data, target)
 			end
@@ -1687,6 +1723,9 @@ local function run(msg, matches)
 			end
 			if matches[2] == 'فلود' then
 				return unlock_group_flood(msg, data, target)
+			end
+			if matches[2] == 'فحش' then
+				return unlock_group_badw(msg, data, target)
 			end
 			if matches[2] == 'عربی' then
 				return unlock_group_arabic(msg, data, target)
