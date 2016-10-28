@@ -6,11 +6,11 @@
   end
   local group_media_lock = data[tostring(target)]['settings']['lock_media']
   if group_media_lock == 'yes' then
-    return 'Media posting is already locked'
+    return 'قفل رسانه از قبل فعال  است .'
   else
     data[tostring(target)]['settings']['lock_media'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Media posting has been locked'
+    return 'قفل رسانه فعال شد .'
   end
 end
 
@@ -20,11 +20,11 @@ local function unlock_group_media(msg, data, target)
   end
   local group_media_lock = data[tostring(target)]['settings']['lock_media']
   if group_media_lock == 'no' then
-    return 'Media posting is not locked'
+    return 'قفل رسانه فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_media'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Media posting has been unlocked'
+    return 'قفل رسانه فعال شد .'
   end
 end
     
@@ -34,13 +34,13 @@ end
   end
   local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
   if group_fwd_lock == 'yes' then
-    return 'Forward is already locked'
+    return 'قفل فروارد از قبل فعال است'
   else
     data[tostring(target)]['settings']['lock_fwd'] = 'yes'
     save_data(_config.moderation.data, data)
     local hash = 'fwd:'..msg.to.id
     redis:set(hash, true)
-    return 'Forward has been locked'
+    return 'قفل فروارد فعال شد .'
   end
 end
 
@@ -50,13 +50,13 @@ local function unlock_group_fwd(msg, data, target)
   end
   local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
   if group_fwd_lock == 'no' then
-    return 'Forward is not locked'
+    return 'قفل فروارد فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_fwd'] = 'no'
     save_data(_config.moderation.data, data)
     local hash = 'fwd:'..msg.to.id
     redis:del(hash)
-    return 'Forward has been unlocked'
+    return 'قفل فروارد غیرفعال شد .'
   end
 end
 
@@ -66,13 +66,13 @@ local function lock_group_reply(msg, data, target)
   end
   local group_reply_lock = data[tostring(target)]['settings']['lock_reply']
   if group_reply_lock == 'yes' then
-    return 'reply posting is already locked'
+    return 'قفل ریپلی از قبل فعال است .'
   else
     data[tostring(target)]['settings']['lock_reply'] = 'yes'
     save_data(_config.moderation.data, data)
     local hash2 = 'reply:'..msg.to.id
     redis:set(hash2, true)
-    return 'reply posting has been locked'
+    return 'قفل ریپلی فعال شد .'
   end
 end
 
@@ -82,13 +82,13 @@ local function unlock_group_reply(msg, data, target)
   end
   local group_reply_lock = data[tostring(target)]['settings']['lock_reply']
   if group_reply_lock == 'no' then
-    return 'reply posting is not locked'
+    return 'قفل ریپلی فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_reply'] = 'no'
     save_data(_config.moderation.data, data)
     local hash2 = 'reply:'..msg.to.id
     redis:del(hash2)
-    return 'reply posting has been unlocked'
+    return 'قفل ریپلی غیرفعال شد .'
   end
 end
 
@@ -98,11 +98,11 @@ local function lock_group_share(msg, data, target)
   end
   local group_share_lock = data[tostring(target)]['settings']['lock_share']
   if group_share_lock == 'yes' then
-    return 'share posting is already locked'
+    return 'قفل ارسال مخاطب از قفل فعال است .'
   else
     data[tostring(target)]['settings']['lock_share'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'share posting has been locked'
+    return 'قفل ارسال مخاطب فعال شد .'
   end
 end
 
@@ -112,11 +112,11 @@ local function unlock_group_share(msg, data, target)
   end
   local group_share_lock = data[tostring(target)]['settings']['lock_share']
   if group_share_lock == 'no' then
-    return 'share posting is not locked'
+    return 'قفل ارسال مخاطب فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_share'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'share posting has been unlocked'
+    return 'قفل ارسال مخاطب غیرفعال شد .'
   end
 end
 
@@ -126,11 +126,11 @@ local function lock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
   if group_tag_lock == 'yes' then
-    return 'tag posting is already locked'
+    return 'قفل تگ از قبل فعال است .'
   else
     data[tostring(target)]['settings']['lock_tag'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'tag posting has been locked'
+    return 'قفل تگ فعال شد .'
   end
 end
 
@@ -140,11 +140,11 @@ local function unlock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
   if group_tag_lock == 'no' then
-    return 'tag posting is not locked'
+    return 'قفل تگ فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_tag'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'tag posting has been unlocked'
+    return 'قفل تگ غیرفعال شد .'
   end
 end
 
@@ -154,11 +154,11 @@ local function lock_group_bots(msg, data, target)
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'yes' then
-    return 'bots is already locked'
+    return 'قفل ربات از قبل فعال است .'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'bots has been locked'
+    return 'قفل ربات فعال شد .'
   end
 end
 
@@ -168,11 +168,11 @@ local function unlock_group_bots(msg, data, target)
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'no' then
-    return 'bots is not locked'
+    return 'قفل ربات فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'bots has been unlocked'
+    return 'قفل ربات غیرفعال شد .'
   end
 end
 
@@ -182,11 +182,11 @@ local function lock_group_number(msg, data, target)
   end
   local group_number_lock = data[tostring(target)]['settings']['lock_number']
   if group_number_lock == 'yes' then
-    return 'number posting is already locked'
+    return 'قفل عدد از قبل فعال است .'
   else
     data[tostring(target)]['settings']['lock_number'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'number posting has been locked'
+    return 'قفل عدد فعال شد .'
   end
 end
 
@@ -196,11 +196,11 @@ local function unlock_group_number(msg, data, target)
   end
   local group_number_lock = data[tostring(target)]['settings']['lock_number']
   if group_number_lock == 'no' then
-    return 'number posting is not locked'
+    return 'قفل عدد فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_number'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'number posting has been unlocked'
+    return 'قفل عدد غیرفعال شد .'
   end
 end
 
@@ -210,11 +210,11 @@ local function lock_group_poker(msg, data, target)
   end
   local group_poker_lock = data[tostring(target)]['settings']['lock_poker']
   if group_poker_lock == 'yes' then
-    return 'poker posting is already locked'
+    return 'قفل پوکر از قبل فعال است '
   else
     data[tostring(target)]['settings']['lock_poker'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'poker posting has been locked'
+    return 'قفل پوکر فعال شد .'
   end
 end
 
@@ -224,11 +224,11 @@ local function unlock_group_poker(msg, data, target)
   end
   local group_poker_lock = data[tostring(target)]['settings']['lock_poker']
   if group_poker_lock == 'no' then
-    return 'poker posting is not locked'
+    return 'قفل پوکر فعال نیست .'
   else
     data[tostring(target)]['settings']['lock_poker'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'poker posting has been unlocked'
+    return 'قفل پوکر غیرفعال شد .'
   end
 end
 
@@ -240,13 +240,13 @@ end
   end
   local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
   if group_audio_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'audio posting is already locked'
+    return 'قفل صدا از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_audio'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'audio posting has been locked'
+    return 'قفل صدا فعال شد .'
     end
   end
 end
@@ -259,13 +259,13 @@ local function unlock_group_audio(msg, data, target)
   end
   local group_audio_lock = data[tostring(target)]['settings']['lock_audio']
   if group_audio_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'audio posting is not locked'
+    return 'قفل صدا فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_audio'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'audio posting has been unlocked'
+    return 'قفل صدا غیرفعال شد .'
     end
   end
 end
@@ -278,13 +278,13 @@ end
   end
   local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
   if group_photo_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'photo posting is already locked'
+    return 'قفل عکس از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_photo'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'photo posting has been locked'
+    return 'قفل عکس فعال شد .'
     end
   end
 end
@@ -297,13 +297,13 @@ local function unlock_group_photo(msg, data, target)
   end
   local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
   if group_photo_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'photo posting is not locked'
+    return 'قفل عکس فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_photo'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'photo posting has been unlocked'
+    return 'قفل عکس غیرفعال شد .'
     end
   end
 end
@@ -316,13 +316,13 @@ end
   end
   local group_video_lock = data[tostring(target)]['settings']['lock_video']
   if group_video_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'video posting is already locked'
+    return 'قفل فیلم از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_video'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'video posting has been locked'
+    return 'قفل فیلم فعال شد .'
     end
   end
 end
@@ -335,13 +335,13 @@ local function unlock_group_video(msg, data, target)
   end
   local group_video_lock = data[tostring(target)]['settings']['lock_video']
   if group_video_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'video posting is not locked'
+    return 'قفل فیلم فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_video'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'video posting has been unlocked'
+    return 'قفل فیلم غیرفعال شد .'
     end
   end
 end
@@ -354,13 +354,13 @@ end
   end
   local group_documents_lock = data[tostring(target)]['settings']['lock_documents']
   if group_documents_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'documents posting is already locked'
+    return 'قفل فایل از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_documents'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'documents posting has been locked'
+    return 'قفل فایل فعال شد .'
     end
   end
 end
@@ -373,13 +373,13 @@ local function unlock_group_documents(msg, data, target)
   end
   local group_documents_lock = data[tostring(target)]['settings']['lock_documents']
   if group_documents_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'documents posting is not locked'
+    return 'قفل فایل فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_documents'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'documents posting has been unlocked'
+    return 'قفل فایل غیرفعال شد .'
     end
   end
 end
@@ -392,13 +392,13 @@ end
   end
   local group_text_lock = data[tostring(target)]['settings']['lock_text']
   if group_text_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'text posting is already locked'
+    return 'قفل متن از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_text'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'text posting has been locked'
+    return 'قفل متن فعال شد .'
     end
   end
 end
@@ -411,13 +411,13 @@ local function unlock_group_text(msg, data, target)
   end
   local group_text_lock = data[tostring(target)]['settings']['lock_text']
   if group_text_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'text posting is not locked'
+    return 'قفل متن فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_text'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'text posting has been unlocked'
+    return 'قفل متن غیرفعال شد .'
     end
   end
 end
@@ -430,13 +430,13 @@ end
   end
   local group_all_lock = data[tostring(target)]['settings']['lock_all']
   if group_all_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'all posting is already locked'
+    return 'قفل همه از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_all'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'all posting has been locked'
+    return 'قفل همه فعال شد .'
     end
   end
 end
@@ -449,13 +449,13 @@ local function unlock_group_all(msg, data, target)
   end
   local group_all_lock = data[tostring(target)]['settings']['lock_all']
   if group_all_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'all posting is not locked'
+    return 'قفل همه فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_all'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'all posting has been unlocked'
+    return 'قفل همه غیرفعال شد .'
     end
   end
 end
@@ -468,13 +468,13 @@ end
   end
   local group_gifs_lock = data[tostring(target)]['settings']['lock_gifs']
   if group_gifs_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
-    return 'gifs posting is already locked'
+    return 'قفل گیف از قبل فعال است .'
   else
     if not is_muted(chat_id, msg_type..': yes') then
 		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_gifs'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'gifs posting has been locked'
+    return 'قفل گیف فعال شد .'
     end
   end
 end
@@ -487,78 +487,53 @@ local function unlock_group_gifs(msg, data, target)
   end
   local group_gifs_lock = data[tostring(target)]['settings']['lock_gifs']
   if group_gifs_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
-    return 'gifs posting is not locked'
+    return 'قفل گیف فعال نیست .'
   else
   	if is_muted(chat_id, msg_type..': yes') then
 		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_gifs'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'gifs posting has been unlocked'
+    return 'قفل گیف غیرفعال شد .'
     end
   end
 end
 
-local function lock_group_inline(msg, data, target)
+	local function lock_group_inline(msg, data, target)
+		local msg_type = 'Inline'
+		local chat_id = msg.to.id
   if not is_momod(msg) then
     return
   end
   local group_inline_lock = data[tostring(target)]['settings']['lock_inline']
-  if group_inline_lock == 'yes' then
-    return 'inline posting is already locked'
+  if group_inline_lock == 'yes' and is_muted(chat_id, msg_type..': yes') then
+    return 'قفل اینلاین از قبل فعال است .'
   else
+    if not is_muted(chat_id, msg_type..': yes') then
+		mute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_inline'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'inline posting has been locked'
+    return 'قفل اینلاین فعال شد .'
+    end
   end
 end
 
 local function unlock_group_inline(msg, data, target)
+	local chat_id = msg.to.id
+	local msg_type = 'Inline'
   if not is_momod(msg) then
     return
   end
   local group_inline_lock = data[tostring(target)]['settings']['lock_inline']
-  if group_inline_lock == 'no' then
-    return 'inline posting is not locked'
+  if group_inline_lock == 'no' and not is_muted(chat_id, msg_type..': yes') then
+    return 'قفل اینلاین فعال نیست .'
   else
+  	if is_muted(chat_id, msg_type..': yes') then
+		unmute(chat_id, msg_type)
     data[tostring(target)]['settings']['lock_inline'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'inline posting has been unlocked'
-  end
-end
-
-local function lock_group_cmd(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_cmd_lock = data[tostring(target)]['settings']['lock_cmd']
-  if group_cmd_lock == 'yes' then
-    return 'cmd posting is already locked'
-  else
-    data[tostring(target)]['settings']['lock_cmd'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'cmd posting has been locked'
-  end
-end
-
-local function unlock_group_cmd(msg, data, target)
-  if not is_momod(msg) then
-    return
-  end
-  local group_cmd_lock = data[tostring(target)]['settings']['lock_cmd']
-  if group_cmd_lock == 'no' then
-    return 'cmd posting is not locked'
-  else
-    data[tostring(target)]['settings']['lock_cmd'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'cmd posting has been unlocked'
-  end
-end
-
-local function is_cmd(jtext)
-    if jtext:match("^[/#!](.*)$") then
-        return true
+    return 'قفل اینلاین غیرفعال شد .'
     end
-    return false
+  end
 end
 
     local function isABotBadWay (user)
@@ -965,9 +940,6 @@ if is_chat_msg(msg) or is_super_group(msg) then
 		if data[tostring(msg.to.id)]['settings']['strict'] then
 	        lock_strict = data[tostring(msg.to.id)]['settings']['strict']
 	    end
-		if data[tostring(msg.to.id)]['settings']['lock_cmd'] then
-	        lock_cmd = data[tostring(msg.to.id)]['settings']['lock_cmd']
-	    end
 		end
 		end
 		    --Media lock:
@@ -1099,16 +1071,6 @@ end
 			end
         end
             --Reply lock.
-			--Cmd Lock:
-		if lock_cmd == "yes" and is_cmd(msg.text) and not is_momod(msg) then
-            if lock_strict == "no" then
-				delete_msg(msg.id, ok_cb, true)
-		    elseif lock_strict == "yes" then
-				delete_msg(msg.id, ok_cb, true)
-			    kick_user(msg.from.id, msg.to.id)
-			end
-        end
-			--Cmd Lock.
 -- End 'RondoMsgChecks' text checks by @Rondoozle
 	return msg
 end
@@ -1118,115 +1080,109 @@ end
 	--Lock or Unlock settings:
 	if is_momod(msg) then
 	  if is_super_group(msg) then
-	    if matches[1] == 'lock' then
+	    if matches[1] == 'قفل' then
 			local target = msg.to.id
 			local data = load_data(_config.moderation.data)
-			if matches[2] == 'media' then
+			if matches[2] == 'مدیا' then
 				return lock_group_media(msg, data, target)
 			end
-			if matches[2] == 'fwd' then
+			if matches[2] == 'فوروارد' then
 				return lock_group_fwd(msg, data, target)
 			end
-			if matches[2] == 'reply' then
+			if matches[2] == 'ریپلای' then
 				return lock_group_reply(msg, data, target)
 			end
-			if matches[2] == 'share' then
+			if matches[2] == 'شیر' then
 				return lock_group_share(msg, data, target)
 			end
-			if matches[2] == 'tag' then
+			if matches[2] == 'تگ' then
 				return lock_group_tag(msg, data, target)
 			end
-			if matches[2] == 'bots' then
+			if matches[2] == 'ربات ها' then
 				return lock_group_bots(msg, data, target)
 			end
-			if matches[2] == 'number' then
+			if matches[2] == 'عدد' then
 				return lock_group_number(msg, data, target)
 			end
-			if matches[2] == 'poker' then
+			if matches[2] == 'پوکر' then
 				return lock_group_poker(msg, data, target)
 			end
-			if matches[2] == 'audio' then
+			if matches[2] == 'صدا' then
 				return lock_group_audio(msg, data, target)
 			end
-			if matches[2] == 'photo' then
+			if matches[2] == 'عکس' then
 				return lock_group_photo(msg, data, target)
 			end
-			if matches[2] == 'video' then
+			if matches[2] == 'فیلم' then
 				return lock_group_video(msg, data, target)
 			end
-			if matches[2] == 'documents' then
+			if matches[2] == 'فایل' then
 				return lock_group_documents(msg, data, target)
 			end
-			if matches[2] == 'text' then
+			if matches[2] == 'متن' then
 				return lock_group_text(msg, data, target)
 			end
-			if matches[2] == 'all' then
+			if matches[2] == 'همه' then
 				return lock_group_all(msg, data, target)
 			end
-			if matches[2] == 'gifs' then
+			if matches[2] == 'گیف' then
 				return lock_group_gifs(msg, data, target)
 			end
-			if matches[2] == 'inline' then
+			if matches[2] == 'اینلاین' then
 				return lock_group_inline(msg, data, target)
-			end
-			if matches[2] == 'cmd' then
-				return lock_group_cmd(msg, data, target)
 			end
         end
 		
-		if matches[1] == 'unlock' then
+		if matches[1] == 'بازکردن' then
 			local target = msg.to.id
 			local data = load_data(_config.moderation.data)
-			if matches[2] == 'media' then
+			if matches[2] == 'مدیا' then
 				return unlock_group_media(msg, data, target)
 			end
-			if matches[2] == 'fwd' then
+			if matches[2] == 'فوروارد' then
 				return unlock_group_fwd(msg, data, target)
 			end
-			if matches[2] == 'reply' then
+			if matches[2] == 'ریپلای' then
 				return unlock_group_reply(msg, data, target)
 			end
-			if matches[2] == 'share' then
+			if matches[2] == 'شیر' then
 				return unlock_group_share(msg, data, target)
 			end
-			if matches[2] == 'tag' then
+			if matches[2] == 'تگ' then
 				return unlock_group_tag(msg, data, target)
 			end
-			if matches[2] == 'bots' then
+			if matches[2] == 'ربات ها' then
 				return unlock_group_bots(msg, data, target)
 			end
-			if matches[2] == 'number' then
+			if matches[2] == 'عدد' then
 				return unlock_group_number(msg, data, target)
 			end
-			if matches[2] == 'poker' then
+			if matches[2] == 'پوکر' then
 				return unlock_group_poker(msg, data, target)
 			end
-			if matches[2] == 'audio' then
+			if matches[2] == 'صدا' then
 				return unlock_group_audio(msg, data, target)
 			end
-			if matches[2] == 'photo' then
+			if matches[2] == 'عکس' then
 				return unlock_group_photo(msg, data, target)
 			end
-			if matches[2] == 'video' then
+			if matches[2] == 'فیلم' then
 				return unlock_group_video(msg, data, target)
 			end
-			if matches[2] == 'documents' then
+			if matches[2] == 'فایل' then
 				return unlock_group_documents(msg, data, target)
 			end
-			if matches[2] == 'text' then
+			if matches[2] == 'متن' then
 				return unlock_group_text(msg, data, target)
 			end
-			if matches[2] == 'all' then
+			if matches[2] == 'همه' then
 				return unlock_group_all(msg, data, target)
 			end
-			if matches[2] == 'gifs' then
+			if matches[2] == 'گیف' then
 				return unlock_group_gifs(msg, data, target)
 			end
-			if matches[2] == 'inline' then
+			if matches[2] == 'اینلاین' then
 				return unlock_group_inline(msg, data, target)
-			end
-			if matches[2] == 'cmd' then
-				return unlock_group_cmd(msg, data, target)
 			end
          end
         end
@@ -1236,8 +1192,8 @@ end
  --End run function
 return {
 	patterns = {
-"^[!/#](lock) (.*)$",
-"^[!/#](unlock) (.*)$",
+"^(قفل) (.*)$",
+"^(بازکردن) (.*)$",
 	},
 	pre_process = pre_process,
 	run = run
