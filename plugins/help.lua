@@ -1,5 +1,5 @@
 function run(msg, matches)
-local help [[Commands list :
+return [[Commands list :
 ⚓️!kick [username|id]
 اخراج افراد
 ⚓️!ban [ username|id]
@@ -65,7 +65,7 @@ local help [[Commands list :
 ⚓️!banlist
 لیست تحریم شدگان
 ]]
-return help
+end
 return {
 advan = "http://github.com/janlou/AdvanSource",
 patterns = {"^راهنما$"},
