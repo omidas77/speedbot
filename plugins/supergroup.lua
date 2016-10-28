@@ -444,6 +444,34 @@ local function unlock_group_badw(msg, data, target)
   end
 end
 
+local function lock_group_operator(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_operator_lock = data[tostring(target)]['settings']['lock_operator']
+  if group_operator_lock == 'yes' then
+    return 'اپراتور در حال حاضر قفل می باشد'
+  else
+    data[tostring(target)]['settings']['lock_operator'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'اپراتور قفل شد'
+  end
+end
+
+local function unlock_group_operator(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_operator_lock = data[tostring(target)]['settings']['lock_operator']
+  if group_operator_lock == 'no' then
+    return 'اپراتور در حال حاضر باز می باشد'
+  else
+    data[tostring(target)]['settings']['lock_operator'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'اپراتور باز شد'
+  end
+end
+
 local function lock_group_contacts(msg, data, target)
   if not is_momod(msg) then
     return
@@ -599,12 +627,17 @@ end
 		end
 	end
 	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['lock_operator'] then
+			data[tostring(target)]['settings']['lock_operator'] = 'no'
+		end
+	end
+	if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['lock_member'] then
 			data[tostring(target)]['settings']['lock_member'] = 'no'
 		end
 	end
   local settings = data[tostring(target)]['settings']
-   local text = "تنظیمات سوپرگپ برای ["..msg.to.print_name.."]:\n\n[🔐] قفل های پیشفرض :\nقفل لینک 👉 "..settings.lock_link.."\nقفل فلود 👉 "..settings.flood.."\nقفل اسپم 👉 "..settings.lock_spam.."\nقفل عربی 👉 "..settings.lock_arabic.."\nقفل اعضا 👉 "..settings.lock_member.."\nقفل آر تی ال 👉 "..settings.lock_rtl.."\nقفل Tgservice  👉 "..settings.lock_tgservice.."\nقفل استیکر 👉 "..settings.lock_sticker.."\n\n[🔏] قفل های جدید :\nقفل مدیا 👉 "..settings.lock_media.."\nقفل فوروارد 👉 "..settings.lock_fwd.."\nقفل ریپلای 👉 "..settings.lock_reply.."\nقفل ربات ها 👉 "..settings.lock_bots.."\nقفل شیر 👉 "..settings.lock_share.."\nقفل فحش 👉 "..settings.lock_badw.."\nقفل تگ 👉 "..settings.lock_tag.."\nقفل شماره 👉 "..settings.lock_number.."\nقفل پوکر 👉 "..settings.lock_poker.."\nقفل صدا 👉 "..settings.lock_audio.."\nقفل عکس 👉 "..settings.lock_photo.."\nقفل فیلم 👉 "..settings.lock_video.."\nقفل فایل 👉 "..settings.lock_documents.."\nقفل متن 👉 "..settings.lock_text.."\nقفل همه 👉 "..settings.lock_all.."\nقفل گیف 👉 "..settings.lock_gifs.."\nقفل اینلاین 👉 "..settings.lock_inline.."\n\n[🔧] دیگر تنظیمات:\n[👥] عمومی؟ 👉 "..settings.public.."\n[📛] تنظیمات سختگیرانه 👉 "..settings.strict.."\n[👀]مقدار حساسیت فلود 👉 "..NUM_MSG_MAX.."|20"
+   local text = "تنظیمات سوپرگپ برای ["..msg.to.print_name.."]:\n\n[🔐] قفل های پیشفرض :\nقفل لینک 👉 "..settings.lock_link.."\nقفل فلود 👉 "..settings.flood.."\nقفل اسپم 👉 "..settings.lock_spam.."\nقفل عربی 👉 "..settings.lock_arabic.."\nقفل اعضا 👉 "..settings.lock_member.."\nقفل آر تی ال 👉 "..settings.lock_rtl.."\nقفل Tgservice  👉 "..settings.lock_tgservice.."\nقفل استیکر 👉 "..settings.lock_sticker.."\n\n[🔏] قفل های جدید :\nقفل مدیا 👉 "..settings.lock_media.."\nقفل فوروارد 👉 "..settings.lock_fwd.."\nقفل ریپلای 👉 "..settings.lock_reply.."\nقفل ربات ها 👉 "..settings.lock_bots.."\nقفل شیر 👉 "..settings.lock_share.."\nقفل فحش 👉 "..settings.lock_badw.."\nقفل تگ 👉 "..settings.lock_tag.."\nقفل شماره 👉 "..settings.lock_number.."\nقفل اپراتور 👉 "..settings.lock_operator.."\nقفل پوکر 👉 "..settings.lock_poker.."\nقفل صدا 👉 "..settings.lock_audio.."\nقفل عکس 👉 "..settings.lock_photo.."\nقفل فیلم 👉 "..settings.lock_video.."\nقفل فایل 👉 "..settings.lock_documents.."\nقفل متن 👉 "..settings.lock_text.."\nقفل همه 👉 "..settings.lock_all.."\nقفل گیف 👉 "..settings.lock_gifs.."\nقفل اینلاین 👉 "..settings.lock_inline.."\n\n[🔧] دیگر تنظیمات:\n[👥] عمومی؟ 👉 "..settings.public.."\n[📛] تنظیمات سختگیرانه 👉 "..settings.strict.."\n[👀]مقدار حساسیت فلود 👉 "..NUM_MSG_MAX.."|20"
   return text
 end
 
@@ -1710,6 +1743,9 @@ local function run(msg, matches)
 			if matches[2] == 'مخاطب' then
 				return lock_group_contacts(msg, data, target)
 			end
+			if matches[2] == 'اپراتور' then
+				return lock_group_operator(msg, data, target)
+			end
 			if matches[2] == 'فحش' then
 				return lock_group_badw(msg, data, target)
 			end
@@ -1722,6 +1758,9 @@ local function run(msg, matches)
 			local target = msg.to.id
 			if matches[2] == 'لینک' then
 				return unlock_group_links(msg, data, target)
+			end
+			if matches[2] == 'اپراتور' then
+				return unlock_group_operator(msg, data, target)
 			end
 			if matches[2] == 'اسپم' then
 				return unlock_group_spam(msg, data, target)
