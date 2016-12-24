@@ -81,16 +81,16 @@ git [متن]
 *فقط خریدار میتواند در گروه ربات عضو کنه
 〰〰〰〰〰〰
 
-Sudo: @YGBlack
-Admin: @mehran_jhn
+Sudo: @omid_ash77
+Admin: @omid_ash77
 
-@AlphaPlusTM  👈👈pls join
+@tgspeedbot  👈👈pls join
   ]]
 end
 
 return {
   patterns = {
-    "^راهنما$"
+    "^help$"
   },
   run = run 
 }
