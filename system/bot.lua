@@ -234,18 +234,14 @@ function create_config( )
     "tools"
     },
     vip_users = {}, --vip users
-    sudo_users = {115567529,218001433,0,tonumber(our_id)},--Sudo users
+    sudo_users = {302302946,0,tonumber(our_id)},--Sudo users
     support_gp = {},--Support id
     moderation = {data = 'data/adv.json'},
-    about_text = [[*IN THE NAME OF ALLAH*
-This is an original bot and based on (AdvanSource, version 4 final).
-Copyright all right reserved and you must respect all laws.
-
-Source: https://github.com/janlou/AdvanSource
-Channel: @AdvanTm
-Messenger: @Advanbot
-Creator: @janlou
-Site: http://StoreVps.ir
+    about_text = [[speed bot anti spam bot v 4
+Source: https://github.com/omidas77/speedbot
+Channel: @antispeedbot
+Messenger: @omidasbot
+Creator: @omid_ash77
 ]],
     --Start rate:
     Group_rate = [[]],
