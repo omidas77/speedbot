@@ -239,7 +239,7 @@ function create_config( )
     moderation = {data = 'data/adv.json'},
     about_text = [[speed bot anti spam bot v 4
 Source: https://github.com/omidas77/speedbot
-Channel: @antispeedbot
+Channel: @tgspeedbot
 Messenger: @omidasbot
 Creator: @omid_ash77
 ]],
